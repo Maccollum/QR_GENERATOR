@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QUANTUM QR | 2025</title>
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="favicon.png">
+</head>
+<body>
+    <!-- Fondo de partículas -->
+    <div id="particles-js"></div>
+    
+    <!-- Grid de energía -->
+    <div class="energy-grid"></div>
+    
+    <!-- Contenedor principal -->
+    <div class="quantum-container">
+        <!-- Header holográfico -->
+        <header class="hologram-header">
+            <h1 class="glitch-text" data-text="QUANTUM QR GENERATOR">QUANTUM QR GENERATOR</h1>
+            <p class="subtitle">Neural Interface System 2025</p>
+        </header>
+
+        <!-- Panel de control principal -->
+        <main class="control-panel">
+            <!-- Sección de entrada de datos -->
+            <section class="input-section">
+                <div class="neuro-input-container">
+                    <label class="cyber-label">NEURAL DATA INPUT</label>
+                    <textarea 
+                        id="qrData" 
+                        class="neuro-input" 
+                        placeholder="Enter quantum data stream..."
+                        rows="3"
+                    >https://github.com</textarea>
+                    
+                    <!-- Selector de tipo de datos -->
+                    <div class="data-type-selector">
+                        <button class="data-btn active" data-type="url">QUANTUM URL</button>
+                        <button class="data-btn" data-type="text">NEURAL TEXT</button>
+                        <button class="data-btn" data-type="wifi">MATRIX WiFi</button>
+                        <button class="data-btn" data-type="contact">BIO-CONTACT</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Panel de visualización QR -->
+            <section class="display-section">
+                <div class="hologram-display">
+                    <div id="qrPreview" class="qr-hologram">
+                        <div class="scanning-effect"></div>
+                        <img id="qrImage" src="" alt="QR Code" style="display: none;">
+                        <div class="placeholder-holo">
+                            <div class="pulse-ring"></div>
+                            <span>QUANTUM CODE READY</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Estadísticas en tiempo real -->
+                    <div class="quantum-stats">
+                        <div class="stat">
+                            <div class="stat-label">DATA STREAM</div>
+                            <div id="dataLength" class="stat-value">0 bytes</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-label">ENERGY LEVEL</div>
+                            <div class="stat-value">98%</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-label">MATRIX SYNC</div>
+                            <div class="stat-value">ONLINE</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Panel de control cuántico -->
+            <section class="quantum-controls">
+                <button id="generateBtn" class="quantum-btn generate-pulse">
+                    <span class="btn-glow"></span>
+                    GENERATE QUANTUM CODE
+                </button>
+                
+                <button id="downloadBtn" class="quantum-btn secondary">
+                    <span class="btn-glow"></span>
+                    DOWNLOAD MATRIX
+                </button>
+                
+                <!-- Modificadores cuánticos -->
+                <div class="quantum-modifiers">
+                    <div class="modifier">
+                        <label>MATRIX SIZE</label>
+                        <input type="range" id="sizeSlider" min="5" max="15" value="10" class="quantum-slider">
+                    </div>
+                    <div class="modifier">
+                        <label>ERROR CORRECTION</label>
+                        <select id="errorSelect" class="quantum-select">
+                            <option value="L">LOW</option>
+                            <option value="M">MEDIUM</option>
+                            <option value="Q">QUANTUM</option>
+                            <option value="H">HIGH</option>
+                        </select>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Consola de sistema -->
+        <footer class="system-console">
+            <div class="console-header">
+                <span>SYSTEM CONSOLE</span>
+                <div class="status-indicators">
+                    <div class="status online"></div>
+                    <div class="status sync"></div>
+                    <div class="status quantum"></div>
+                </div>
+            </div>
+            <div id="consoleOutput" class="console-output">
+                <div class="log-entry">> Quantum QR Generator initialized</div>
+                <div class="log-entry">> Neural interface established</div>
+                <div class="log-entry">> Ready for data stream input</div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Efectos de sonido (opcional) -->
+    <audio id="hoverSound" preload="auto">
+        <source src="https://assets.mixkit.co/sfx/preview/mixkit-sci-fi-click-900.mp3" type="audio/mpeg">
+    </audio>
+
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>

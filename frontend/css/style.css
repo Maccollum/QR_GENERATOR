@@ -1,0 +1,492 @@
+/* Variables de diseño cuántico */
+:root {
+    --quantum-blue: #00f3ff;
+    --matrix-green: #00ff88;
+    --neon-purple: #b967ff;
+    --cyber-orange: #ff4d00;
+    --dark-matter: #0a0a14;
+    --deep-space: #121220;
+    --hologram-glow: rgba(0, 243, 255, 0.6);
+    --matrix-glow: rgba(0, 255, 136, 0.4);
+}
+
+/* Reset y base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: var(--dark-matter);
+    color: var(--quantum-blue);
+    font-family: 'Courier New', monospace;
+    overflow-x: hidden;
+    min-height: 100vh;
+}
+
+/* Fondo de partículas */
+#particles-js {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: -2;
+}
+
+/* Grid de energía */
+.energy-grid {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        linear-gradient(90deg, var(--deep-space) 21px, transparent 1%) center,
+        linear-gradient(var(--deep-space) 21px, transparent 1%) center,
+        var(--quantum-blue);
+    background-size: 22px 22px;
+    opacity: 0.03;
+    z-index: -1;
+    animation: gridPulse 20s linear infinite;
+}
+
+@keyframes gridPulse {
+    0%, 100% { opacity: 0.03; }
+    50% { opacity: 0.08; }
+}
+
+/* Contenedor principal */
+.quantum-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    position: relative;
+    z-index: 1;
+}
+
+/* Header holográfico */
+.hologram-header {
+    text-align: center;
+    margin-bottom: 3rem;
+    position: relative;
+}
+
+.glitch-text {
+    font-size: 3.5rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--quantum-blue);
+    position: relative;
+    text-shadow: 
+        0 0 10px var(--hologram-glow),
+        0 0 20px var(--hologram-glow),
+        0 0 30px var(--hologram-glow);
+    animation: glitch 5s infinite;
+}
+
+.glitch-text::before,
+.glitch-text::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.glitch-text::before {
+    animation: glitch-1 0.5s infinite;
+    color: var(--neon-purple);
+    z-index: -1;
+}
+
+.glitch-text::after {
+    animation: glitch-2 0.5s infinite;
+    color: var(--matrix-green);
+    z-index: -2;
+}
+
+@keyframes glitch {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-2px); }
+    75% { transform: translateX(2px); }
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    color: var(--matrix-green);
+    margin-top: 0.5rem;
+    opacity: 0.8;
+    animation: subtitlePulse 3s ease-in-out infinite;
+}
+
+@keyframes subtitlePulse {
+    0%, 100% { opacity: 0.6; }
+    50% { opacity: 1; }
+}
+
+/* Panel de control */
+.control-panel {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    margin-bottom: 2rem;
+}
+
+/* Input section */
+.input-section {
+    background: rgba(10, 10, 20, 0.8);
+    border: 1px solid var(--quantum-blue);
+    border-radius: 15px;
+    padding: 2rem;
+    backdrop-filter: blur(10px);
+    box-shadow: 
+        0 0 20px var(--hologram-glow),
+        inset 0 0 20px rgba(0, 243, 255, 0.1);
+}
+
+.cyber-label {
+    display: block;
+    font-size: 0.9rem;
+    color: var(--matrix-green);
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.neuro-input {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid var(--quantum-blue);
+    border-radius: 8px;
+    color: var(--quantum-blue);
+    font-family: 'Courier New', monospace;
+    font-size: 1rem;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    resize: vertical;
+    transition: all 0.3s ease;
+}
+
+.neuro-input:focus {
+    outline: none;
+    box-shadow: 0 0 15px var(--hologram-glow);
+    border-color: var(--matrix-green);
+}
+
+/* Selector de tipo de datos */
+.data-type-selector {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+}
+
+.data-btn {
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid var(--quantum-blue);
+    color: var(--quantum-blue);
+    padding: 0.75rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+}
+
+.data-btn:hover,
+.data-btn.active {
+    background: var(--quantum-blue);
+    color: var(--dark-matter);
+    box-shadow: 0 0 15px var(--hologram-glow);
+}
+
+/* Display section */
+.display-section {
+    background: rgba(10, 10, 20, 0.8);
+    border: 1px solid var(--matrix-green);
+    border-radius: 15px;
+    padding: 2rem;
+    backdrop-filter: blur(10px);
+    box-shadow: 
+        0 0 20px var(--matrix-glow),
+        inset 0 0 20px rgba(0, 255, 136, 0.1);
+}
+
+.hologram-display {
+    text-align: center;
+}
+
+.qr-hologram {
+    position: relative;
+    width: 250px;
+    height: 250px;
+    margin: 0 auto 2rem;
+    background: rgba(0, 0, 0, 0.3);
+    border: 2px solid var(--quantum-blue);
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.scanning-effect {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: var(--matrix-green);
+    box-shadow: 0 0 10px var(--matrix-green);
+    animation: scan 2s linear infinite;
+}
+
+@keyframes scan {
+    0% { top: 0; }
+    100% { top: 100%; }
+}
+
+.placeholder-holo {
+    text-align: center;
+    color: var(--quantum-blue);
+    opacity: 0.7;
+}
+
+.pulse-ring {
+    width: 80px;
+    height: 80px;
+    border: 2px solid var(--quantum-blue);
+    border-radius: 50%;
+    margin: 0 auto 1rem;
+    position: relative;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { 
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% { 
+        transform: scale(1.1);
+        opacity: 0.7;
+    }
+}
+
+/* Estadísticas cuánticas */
+.quantum-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.stat {
+    text-align: center;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 8px;
+    border: 1px solid var(--neon-purple);
+}
+
+.stat-label {
+    font-size: 0.8rem;
+    color: var(--neon-purple);
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+}
+
+.stat-value {
+    font-size: 1.1rem;
+    color: var(--matrix-green);
+    font-weight: bold;
+}
+
+/* Controles cuánticos */
+.quantum-controls {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 2rem;
+    background: rgba(10, 10, 20, 0.6);
+    border: 1px solid var(--neon-purple);
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+}
+
+.quantum-btn {
+    position: relative;
+    background: linear-gradient(45deg, var(--quantum-blue), var(--matrix-green));
+    border: none;
+    color: var(--dark-matter);
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    font-family: 'Courier New', monospace;
+    font-size: 1.1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    min-width: 250px;
+}
+
+.quantum-btn .btn-glow {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    transition: left 0.5s ease;
+}
+
+.quantum-btn:hover .btn-glow {
+    left: 100%;
+}
+
+.quantum-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 
+        0 5px 20px var(--hologram-glow),
+        0 0 30px var(--matrix-glow);
+}
+
+.quantum-btn.secondary {
+    background: linear-gradient(45deg, var(--neon-purple), var(--cyber-orange));
+}
+
+.generate-pulse {
+    animation: generatePulse 2s ease-in-out infinite;
+}
+
+@keyframes generatePulse {
+    0%, 100% { 
+        box-shadow: 0 0 20px var(--hologram-glow);
+    }
+    50% { 
+        box-shadow: 
+            0 0 30px var(--hologram-glow),
+            0 0 40px var(--matrix-glow);
+    }
+}
+
+/* Modificadores cuánticos */
+.quantum-modifiers {
+    display: flex;
+    gap: 2rem;
+    margin-top: 1rem;
+}
+
+.modifier {
+    text-align: center;
+}
+
+.modifier label {
+    display: block;
+    color: var(--matrix-green);
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+}
+
+.quantum-slider {
+    width: 150px;
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid var(--quantum-blue);
+    border-radius: 10px;
+    outline: none;
+}
+
+.quantum-select {
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid var(--quantum-blue);
+    color: var(--quantum-blue);
+    padding: 0.5rem;
+    border-radius: 6px;
+    font-family: 'Courier New', monospace;
+}
+
+/* Consola del sistema */
+.system-console {
+    background: rgba(0, 0, 0, 0.8);
+    border: 1px solid var(--cyber-orange);
+    border-radius: 10px;
+    padding: 1rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+}
+
+.console-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    color: var(--cyber-orange);
+    text-transform: uppercase;
+    font-size: 0.8rem;
+}
+
+.status-indicators {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.status {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    animation: statusPulse 2s ease-in-out infinite;
+}
+
+.status.online { background: var(--matrix-green); }
+.status.sync { background: var(--quantum-blue); animation-delay: 0.5s; }
+.status.quantum { background: var(--neon-purple); animation-delay: 1s; }
+
+@keyframes statusPulse {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
+}
+
+.console-output {
+    max-height: 100px;
+    overflow-y: auto;
+    color: var(--matrix-green);
+}
+
+.log-entry {
+    margin-bottom: 0.25rem;
+    opacity: 0.8;
+}
+
+/* Efectos de partículas personalizados */
+particles-js {
+    background: linear-gradient(45deg, var(--dark-matter), var(--deep-space));
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .control-panel {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .quantum-modifiers {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .glitch-text {
+        font-size: 2.5rem;
+    }
+    
+    .qr-hologram {
+        width: 200px;
+        height: 200px;
+    }
+}
