@@ -16,14 +16,14 @@ particlesJS('particles-js', {
         move: {
             enable: true,
             speed: 2,
-            direction: "none",
             random: true,
-            straight: false,
-            out_mode: "out",
-            bounce: false
+            out_mode: "out"
         }
     }
 });
+
+// 🔥 URL DE TU BACKEND (Render)
+const API_BASE = "https://qr-generator-backend-ump4.onrender.com";
 
 // Variables globales
 let currentQRData = '';
@@ -31,23 +31,21 @@ let isGenerating = false;
 
 // Elementos DOM
 const qrDataInput = document.getElementById('qrData');
-    const generateBtn = document.getElementById('generateBtn');
+const generateBtn = document.getElementById('generateBtn');
 const downloadBtn = document.getElementById('downloadBtn');
 const qrImage = document.getElementById('qrImage');
 const dataLength = document.getElementById('dataLength');
 const consoleOutput = document.getElementById('consoleOutput');
 
 // Inicialización
-document.addEventListener('DOMContentLoaded', function() {
-    console.log('🚀 Frontend 2050 inicializado');
+document.addEventListener('DOMContentLoaded', () => {
+    console.log('🚀 Frontend inicializado');
     initializeSystem();
     setupEventListeners();
 });
 
 function initializeSystem() {
-    addConsoleLog('System boot sequence initiated...');
-    addConsoleLog('Quantum processors online');
-    addConsoleLog('Ready for quantum data processing');
+    addConsoleLog('System ready');
     updateDataStats();
 }
 
@@ -58,101 +56,87 @@ function setupEventListeners() {
 }
 
 function updateDataStats() {
-    const length = qrDataInput.value.length;
-    dataLength.textContent = `${length} quantum bytes`;
+    dataLength.textContent = `${qrDataInput.value.length} characters`;
 }
 
+// 🔥 GENERAR QR (YA CONECTADO A RENDER)
 async function generateQR() {
-    console.log('🎯 TEST: Iniciando generación de QR');
-    
     const data = qrDataInput.value.trim();
-    console.log('📝 Datos a enviar:', data);
-    
+
     if (!data) {
         addConsoleLog('ERROR: No data entered', 'error');
         return;
     }
-    
+
     if (isGenerating) return;
     isGenerating = true;
-    
+
     generateBtn.disabled = true;
     generateBtn.textContent = 'GENERATING...';
-    addConsoleLog('Sending quantum data to matrix...');
-    
+    addConsoleLog('Generating QR from cloud...');
+
     try {
-        console.log('🌐 Enviando request a: http://127.0.0.1:5000/api/generate');
-        
-        const response = await fetch('http://127.0.0.1:5000/api/generate', {
+        const response = await fetch(`${API_BASE}/api/generate`, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json',
+                'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ data: data })
+            body: JSON.stringify({ data })
         });
-        
-        console.log('📡 Response status:', response.status);
-        
+
         if (!response.ok) {
-            const errorText = await response.text();
-            console.error('❌ Error response:', errorText);
-            throw new Error(`Server error: ${response.status} - ${errorText}`);
+            throw new Error(`Server error: ${response.status}`);
         }
-        
+
         const result = await response.json();
-        console.log('✅ Response data:', result);
-        
+
         if (result.success) {
             qrImage.src = result.image;
             qrImage.style.display = 'block';
             document.querySelector('.placeholder-holo').style.display = 'none';
             currentQRData = data;
-            addConsoleLog('SUCCESS: Quantum matrix generated');
-            console.log('🎉 QR generado y mostrado');
+            addConsoleLog('SUCCESS: QR generated');
         } else {
-            throw new Error(result.error || 'Unknown server error');
+            throw new Error(result.error || 'Unknown error');
         }
-        
+
     } catch (error) {
-        console.error('❌ Error completo:', error);
         addConsoleLog(`ERROR: ${error.message}`, 'error');
     } finally {
         isGenerating = false;
         generateBtn.disabled = false;
-        generateBtn.textContent = 'GENERATE QUANTUM CODE';
-        console.log('🔄 Estado resetado');
+        generateBtn.textContent = 'GENERATE QR';
     }
 }
 
-async function downloadQR() {
+// 🔥 DESCARGAR QR
+function downloadQR() {
     if (!currentQRData) {
         addConsoleLog('ERROR: Generate a QR first', 'error');
         return;
     }
-    
-    try {
-        window.open(
-            `http://127.0.0.1:5000/api/download?data=${encodeURIComponent(currentQRData)}`,
-            '_blank'
-        );
-        addConsoleLog('SUCCESS: Download initiated');
-    } catch (error) {
-        addConsoleLog(`DOWNLOAD ERROR: ${error.message}`, 'error');
-    }
+
+    window.open(
+        `${API_BASE}/api/download?data=${encodeURIComponent(currentQRData)}`,
+        '_blank'
+    );
+
+    addConsoleLog('Download started');
 }
 
+// LOGS
 function addConsoleLog(message, type = 'info') {
-    const logEntry = document.createElement('div');
-    logEntry.className = `log-entry ${type}`;
-    logEntry.textContent = `> ${message}`;
-    consoleOutput.appendChild(logEntry);
+    const log = document.createElement('div');
+    log.className = `log-entry ${type}`;
+    log.textContent = `> ${message}`;
+    consoleOutput.appendChild(log);
     consoleOutput.scrollTop = consoleOutput.scrollHeight;
 }
 
-// CSS para logs
+// ESTILOS LOG
 const style = document.createElement('style');
 style.textContent = `
-    .log-entry.error { color: #ff4444; }
-    .log-entry.success { color: #00ff88; }
+.log-entry.error { color: red; }
+.log-entry.success { color: lime; }
 `;
 document.head.appendChild(style);
