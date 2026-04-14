@@ -59,13 +59,20 @@ function updateDataStats() {
     dataLength.textContent = `${qrDataInput.value.length} characters`;
 }
 
-// 🔥 GENERAR QR (YA CONECTADO A RENDER)
+// 🔥 GENERAR QR (CORREGIDO)
 async function generateQR() {
-    const data = qrDataInput.value.trim();
 
+    let data = qrDataInput.value.trim();
+
+    // ✅ Validación
     if (!data) {
         addConsoleLog('ERROR: No data entered', 'error');
         return;
+    }
+
+    // 🔥 Forzar formato URL correcto
+    if (!data.startsWith("http://") && !data.startsWith("https://")) {
+        data = "https://" + data;
     }
 
     if (isGenerating) return;
@@ -107,13 +114,6 @@ async function generateQR() {
         generateBtn.disabled = false;
         generateBtn.textContent = 'GENERATE QR';
     }
-
-    let data = qrDataInput.value.trim();
-
-    // Forzar formato URL correcto
-    if (!data.startsWith("http://") && !data.startsWith("https://")) {
-       data = "https://" + data;
-   }
 }
 
 // 🔥 DESCARGAR QR
