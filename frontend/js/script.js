@@ -107,6 +107,13 @@ async function generateQR() {
         generateBtn.disabled = false;
         generateBtn.textContent = 'GENERATE QR';
     }
+
+    let data = qrDataInput.value.trim();
+
+    // Forzar formato URL correcto
+    if (!data.startsWith("http://") && !data.startsWith("https://")) {
+       data = "https://" + data;
+   }
 }
 
 // 🔥 DESCARGAR QR
